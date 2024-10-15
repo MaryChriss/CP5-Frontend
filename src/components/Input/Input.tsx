@@ -1,4 +1,3 @@
-import styles from "./Input.module.css";
 import { StyledInput, StyledLabel } from "./Input.style";
 
 interface InputProps {
