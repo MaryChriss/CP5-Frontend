@@ -7,9 +7,9 @@ import { loadLoginState } from "@/helpers/Loadloginstate";
 
 
 export default function Home() {
-  loadLoginState(); // Função auxiliar para carregar o estado de login
+    loadLoginState(); 
     const searchParams = useSearchParams();
-    const cityCode = searchParams.get("cityCode") || "244"; // Cidade padrão
+    const cityCode = searchParams.get("cityCode") || "244";
     const { userName } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [cityData, setCityData] = useState(null);
@@ -74,7 +74,7 @@ export default function Home() {
                     </p>
                     <p>{cityData.clima[0].condicao_desc}</p>
                 </div>
-            )}
+                )}
 
             <div>
             {forecast.length > 0 &&

@@ -22,7 +22,7 @@ export default function Busca() {
     };
 
     const loadCities = async () => {
-        // Limpa a lista de cidades antes de buscar novamente
+
         setCityList([]);
         
         if (!cityName.trim()) {

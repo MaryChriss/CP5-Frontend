@@ -10,5 +10,7 @@ export default function Perfil() {
 
     return <>
         <Header title="Perfil" userName={userName} />
+        <h2>
+            <br />Olá, Seja Bem-vindo(a) {userName}</h2>
     </>
 }

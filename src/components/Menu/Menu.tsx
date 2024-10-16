@@ -2,7 +2,6 @@
 
 import { BiHeart, BiHomeAlt, BiSearch, BiUserCircle } from "react-icons/bi";
 import { StyledLi, StyledLink, StyledNav, StyledUl } from "./Menu.style";
-import Link from 'next/link'; // Importando o Link do Next.js
 
 export const Menu = () => {
     return (
