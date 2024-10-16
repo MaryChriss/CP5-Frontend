@@ -1,11 +1,11 @@
 "use client";
-import { useContext, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/Button/Button";
 import { Header } from "@/components/Header/Header";
 import { Input } from "@/components/Input/Input";
-import { Button } from "@/components/Button/Button";
 import UserContext from "@/context/UserContext";
 import { loadLoginState } from "@/helpers/Loadloginstate";
+import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
 
 
 export default function Busca() {
@@ -24,28 +24,28 @@ export default function Busca() {
     const loadCities = async () => {
 
         setCityList([]);
-        
+
         if (!cityName.trim()) {
-        alert("Digite o nome de uma cidade para buscar.");
-        return;
+            alert("Digite o nome de uma cidade para buscar.");
+            return;
         }
 
         setIsLoading(true);
         try {
-        const response = await fetch(
-            `https://brasilapi.com.br/api/cptec/v1/cidade/${cityName}`
-        );
-        const data = await response.json();
-        setCityList(data);
+            const response = await fetch(
+                `https://brasilapi.com.br/api/cptec/v1/cidade/${cityName}`
+            );
+            const data = await response.json();
+            setCityList(data);
         } catch (error) {
-        console.log(error);
+            console.log(error);
         } finally {
-        setIsLoading(false);
+            setIsLoading(false);
         }
     };
 
     const handleClick = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); // Previne o comportamento padrão de recarregar a página
+        event.preventDefault();
         loadCities();
     };
 
@@ -55,40 +55,40 @@ export default function Busca() {
 
     return (
         <>
-        <Header title="Busca" userName={userName} />
-        <form onSubmit={handleClick}>
-            <Input
-            label="Buscar cidade"
-            id="search"
-            name="search"
-            type="text"
-            value={cityName}
-            onChange={handleChange}
-            />
-            <Button type="submit">Buscar</Button>
-        </form>
+            <Header title="Busca" userName={userName} />
+            <form onSubmit={handleClick}>
+                <Input
+                    label="Buscar cidade"
+                    id="search"
+                    name="search"
+                    type="text"
+                    value={cityName}
+                    onChange={handleChange}
+                />
+                <Button type="submit">Buscar</Button>
+            </form>
 
-        <div>
-            {isLoading ? (
-            <p>Carregando...</p>
-            ) : (
-            <ul>
-                {cityList.length > 0 ? (
-                cityList.map((city) => (
-                    <li
-                    key={city.id}
-                    onClick={() => handleNavigate(city.id)}
-                    style={{ cursor: "pointer", marginBottom: "8px" }}
-                    >
-                    {city.nome} / {city.estado}
-                    </li>
-                ))
+            <div>
+                {isLoading ? (
+                    <p>Carregando...</p>
                 ) : (
-                <p>Nenhuma cidade encontrada.</p>
+                    <ul>
+                        {cityList.length > 0 ? (
+                            cityList.map((city) => (
+                                <li
+                                    key={city.id}
+                                    onClick={() => handleNavigate(city.id)}
+                                    style={{ cursor: "pointer", marginBottom: "8px" }}
+                                >
+                                    {city.nome} / {city.estado}
+                                </li>
+                            ))
+                        ) : (
+                            <p>Nenhuma cidade encontrada.</p>
+                        )}
+                    </ul>
                 )}
-            </ul>
-            )}
-        </div>
+            </div>
         </>
     );
 }
